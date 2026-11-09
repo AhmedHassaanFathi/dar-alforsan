@@ -1,0 +1,148 @@
+{
+  "intermediate": {
+    "name": "المرحلة المتوسطة",
+    "id": "1TiqulUmYpbns-Mw3C6nCrPmacdD5vPtP",
+    "domains": [
+      {
+        "name": "الادارة المدرسية",
+        "id": "1GDA8R1Z1b0DsAUzrcHY2VxZPAuwRFiAT",
+        "standards": [
+          {
+            "name": "التخطيط",
+            "id": "1zi0EHpdcuoLefHYieUu3CJtgl49EbcMp"
+          },
+          {
+            "name": "التطويرالمؤسسي",
+            "id": "11eEwpBwEuBdvrr7XX03uJgVv3hMAhyLT"
+          },
+          {
+            "name": "المجتمع المدرسي",
+            "id": "1jC15psM_8nRkMfqwC33HuHQe-6IA6Gbb"
+          },
+          {
+            "name": "حقوق الطفل وحمايته",
+            "id": "1CdV-QZod1ZUkl54TLwxUQqFen64ROMRj"
+          },
+          {
+            "name": "قيادة العملية التعليمية",
+            "id": "1Y3SdRT-UT9cBPpV7qvzzyj-0eO-AI8qv"
+          }
+        ]
+      },
+      {
+        "name": "البيئة المدرسية",
+        "id": "1bq_ePRjPGJXSoz7lbeWckNvf-aVPIa3m",
+        "standards": [
+          {
+            "name": "الأمن والسلامة",
+            "id": "1ZiW38Z1pGCjsCt0J4EFcKqmHq862qwRT"
+          },
+          {
+            "name": "المبنى المدرسي",
+            "id": "1I8pIrN17Wh7iGH25fWHni1ShEB4jxBPx"
+          }
+        ]
+      },
+      {
+        "name": "التعليم والتعلم",
+        "id": "1rNgG2Jfyzm2wngLGI6TMBXtpa75NB0uC",
+        "standards": [
+          {
+            "name": "بناء خبرات التعلم",
+            "id": "1W4c-TGEE6MxWEVYsPM5UpqXrxZCfh2VM"
+          },
+          {
+            "name": "تقويم التعلم",
+            "id": "1eTKAOY86dd6EET7vB1KQ_vlvQfBbpJwi"
+          }
+        ]
+      },
+      {
+        "name": "نواتج التعلم",
+        "id": "1BbG_uxiLrn1LSHoUjxKRKzXI-C69bAud",
+        "standards": [
+          {
+            "name": "التحصيل التعليمي",
+            "id": "1uvozkQZpx_BpIzHWjSJM3xCABLiI1ZTQ"
+          },
+          {
+            "name": "التطور الشخصي والصحي والاجتماعي",
+            "id": "1Wdi5tb_5MrIJQ_1yNf7zaXji-1WnRxwT"
+          }
+        ]
+      }
+    ],
+    "indicators": {}
+  },
+  "secondary": {
+    "name": "المرحلة الثانوية",
+    "id": "1CqJJa7V6iGKqKE1WvG4h7sZkYQtda8bW",
+    "domains": [
+      {
+        "name": "الإدارة المدرسية",
+        "id": "11XVXMVtz-uDNoOux9JZQp7ungFeGtnJc",
+        "standards": [
+          {
+            "name": "التخطيط",
+            "id": "1JWuBHd7_kvp5KjJgSZbsBJrFZAvUbIJc"
+          },
+          {
+            "name": "التطوير المؤسسي",
+            "id": "1kxjXq6We4btIbxWOhxolMRvG7n4JwDBi"
+          },
+          {
+            "name": "حقوق المتعلم وحمايته",
+            "id": "1UM7nodmUZOWMW8xWsFuY9JnMz0jSVDvF"
+          },
+          {
+            "name": "قيادة العملية التعليمية",
+            "id": "1k0FZnezOShM-Kcx5uiwQRmk5JijVrr-c"
+          }
+        ]
+      },
+      {
+        "name": "البيئة المدرسية",
+        "id": "1vKkyERrsov9yIIrPl6wScHzia_XXJqgD",
+        "standards": [
+          {
+            "name": "الأمن والسلامة",
+            "id": "1hZuF7hFkJ5bwHIOoAielHHJeB_hEtHdw"
+          },
+          {
+            "name": "المبنى المدرسي",
+            "id": "1SgaEaA73b15G_XChsZ70GLz65bvZx5qP"
+          }
+        ]
+      },
+      {
+        "name": "التعليم والتعلم",
+        "id": "1i7O9egrpgRSs_b6NXf2LTnqP6VflSCtr",
+        "standards": [
+          {
+            "name": "بناء خبرات التعلم",
+            "id": "1EBynybK8YC5yIDVbN6pN_p8pr0vhDJcI"
+          },
+          {
+            "name": "تقويم التعلم",
+            "id": "1TNOPGbctzICc92WUHv5_Iy9nqT3nHBJW"
+          }
+        ]
+      },
+      {
+        "name": "نواتج التعلم",
+        "id": "1Kpn6tIfCkoNBzkTudx_RQqHILhcsW_ld",
+        "standards": [
+          {
+            "name": "التحصيل التعليمي",
+            "id": "1ZTQxmKlhydcJqK_yp7AkGoan-SGCRYgT"
+          },
+          {
+            "name": "التطور الشخصي والصحي والاجتماعي",
+            "id": "1mTc4DyvgEFVxdYDPg4dssA8lz9_MRkhg"
+          }
+        ]
+      }
+    ],
+    "indicators": {}
+  }
+}
