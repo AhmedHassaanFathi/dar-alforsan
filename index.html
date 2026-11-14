@@ -938,43 +938,7 @@
         </div>
       </section>
 
-        <!-- أزرار المراحل الثلاث (الابتدائي، المتوسط، الثانوي) -->
-        <div class="flex items-center gap-2 flex-wrap">
-          <button id="stageBtn_primary" onclick="setSchoolStage('primary')"
-            class="stage-tab-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 bg-brand-600 text-white border border-brand-400">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
-            <span>المرحلة الابتدائية</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-white/20 font-mono">122 ملفاً</span>
-          </button>
 
-          <button id="stageBtn_intermediate" onclick="setSchoolStage('intermediate')"
-            class="stage-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:text-white hover:bg-white/15 border border-white/10">
-            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-            <span>المرحلة المتوسطة</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-white/10 font-mono">مربوط بـ Drive</span>
-          </button>
-
-          <button id="stageBtn_secondary" onclick="setSchoolStage('secondary')"
-            class="stage-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:text-white hover:bg-white/15 border border-white/10">
-            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            <span>المرحلة الثانوية</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-white/10 font-mono">مربوط بـ Drive</span>
-          </button>
-
-          <!-- زر المجلد المباشر للمرحلة على Google Drive -->
-          <a id="stageSelectorDriveLink" href="https://drive.google.com/drive/folders/1VDoRMHx_TfYHfPGFrK0_QiGM-7kTeHfu"
-            target="_blank" rel="noopener noreferrer"
-            class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition-all flex items-center gap-1.5 shrink-0"
-            title="فتح مجلد المرحلة المختارة على Google Drive">
-            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z" />
-            </svg>
-            <span>مجلد المرحلة في Drive ↗</span>
-          </a>
-        </div>
-
-      </div>
 
       <div id="navigationControlsBar"
         class="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/90 shadow-soft flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 transition-all">
@@ -6370,9 +6334,9 @@
         const sideBtn = document.getElementById('sideStageBtn_' + k);
         if (btn) {
           if (k === stageKey) {
-            btn.className = "stage-tab-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 bg-brand-600 text-white border border-brand-400";
+            btn.className = "stage-tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 bg-brand-600 text-white border border-brand-500";
           } else {
-            btn.className = "stage-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-white/10 text-slate-300 hover:text-white hover:bg-white/15 border border-white/10";
+            btn.className = "stage-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200";
           }
         }
         if (sideBtn) {
