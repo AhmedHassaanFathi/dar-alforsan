@@ -100,6 +100,55 @@
       background: rgba(255, 255, 255, 0.3);
     }
 
+    
+    /* أنيميشن وتأثيرات بصرية متقدمة للبطاقات والرسومات */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+    .animate-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .kpi-card {
+      position: relative;
+      background: white;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 4px 20px -2px rgba(11, 37, 58, 0.05);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transition: height 0.25s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px -6px rgba(11, 37, 58, 0.12);
+    }
+    .kpi-card:hover::before {
+      height: 6px;
+    }
+    .kpi-card-1::before { background: linear-gradient(90deg, #10b981, #059669); }
+    .kpi-card-2::before { background: linear-gradient(90deg, #0284c7, #0369a1); }
+    .kpi-card-3::before { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+    .kpi-card-4::before { background: linear-gradient(90deg, #8b5cf6, #7c3aed); }
+    .kpi-card-5::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
+
     /* تأثيرات بصرية متقدمة للبطاقات والرسومات */
     .glass-card {
       background: rgba(255, 255, 255, 0.85);
@@ -524,99 +573,112 @@
     <main class="p-4 sm:p-8 space-y-8 flex-grow">
 
       <!-- ======================================================== -->
-      <!-- البانر القيادي الرئيسي لمنصة التميز - مطابق 100% للهوية المطلوبة -->
+      <!-- البانر القيادي الرئيسي لمنصة التميز - متطابق 100% مع الهوية والواجهة -->
       <!-- ======================================================== -->
-      <section class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl border border-sky-900/40 bg-slate-950 text-white mb-6">
+      <section class="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] shadow-2xl border border-sky-900/40 bg-slate-950 text-white mb-8">
         
-        <!-- خلفية مبنى مدارس دار الفرسان الحقيقي مع طبقة التدرج الكحلي والدوائر الهندسية -->
+        <!-- خلفية مبنى مدارس دار الفرسان الحقيقي مع التدرج اللوني الذكي ليظهر المبنى واضحاً 100% على اليسار -->
         <div class="absolute inset-0 z-0">
-          <img src="building.jpg" alt="مبنى مدارس دار الفرسان الأهلية" class="w-full h-full object-cover object-center filter brightness-[0.55] contrast-110 scale-105 transition-transform duration-1000 ease-out hover:scale-100" />
+          <img src="building.jpg" alt="مبنى مدارس دار الفرسان الأهلية" class="w-full h-full object-cover object-[25%_center] filter brightness-[0.95] contrast-[1.08] transition-transform duration-1000 ease-out hover:scale-102" />
           
-          <!-- طبقة التدرج الكحلي الملكي الفاخر -->
-          <div class="absolute inset-0 bg-gradient-to-r from-[#061524]/95 via-[#0b253a]/90 to-[#061524]/95 backdrop-blur-[1px]"></div>
-          
-          <!-- شبكة الدوائر الهندسية والإشعاعات الضوئية المتطابقة مع الصورة 1 -->
-          <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-45" xmlns="http://www.w3.org/2000/svg">
+          <!-- التدرج الكحلي الملكي الذكي: من اليمين كحلي غامق (حيث الشعار والنصوص) إلى اليسار شفاف جداً (حيث الواجهة الزجاجية والمبنى مشرق وواضح) -->
+          <div class="absolute inset-0 bg-gradient-to-l from-[#061524]/95 via-[#0b253a]/80 via-55% to-transparent to-95%"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#061524]/75 via-transparent to-transparent"></div>
+
+          <!-- دوائر التركيز الهندسية الرادارية المتطابقة مع التصميم على مبنى المدرسة باليسار -->
+          <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-60" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="heroCircGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45"/>
                 <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
               </radialGradient>
             </defs>
-            <circle cx="28%" cy="50%" r="180" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="8 6" fill="none" opacity="0.45"/>
-            <circle cx="28%" cy="50%" r="260" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 8" fill="none" opacity="0.25"/>
-            <circle cx="28%" cy="50%" r="90" fill="url(#heroCircGlow)" opacity="0.7"/>
-            <circle cx="23%" cy="26%" r="4" fill="#38bdf8" class="animate-ping"/>
-            <circle cx="23%" cy="26%" r="3" fill="#ffffff"/>
-            <circle cx="17%" cy="68%" r="4" fill="#34d399"/>
-            <circle cx="33%" cy="78%" r="3" fill="#38bdf8"/>
+            <circle cx="20%" cy="48%" r="180" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 6" fill="none" opacity="0.55"/>
+            <circle cx="20%" cy="48%" r="260" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 8" fill="none" opacity="0.3"/>
+            <circle cx="20%" cy="48%" r="90" fill="url(#heroCircGlow)" opacity="0.7"/>
+            <circle cx="15%" cy="25%" r="5" fill="#38bdf8" class="animate-ping"/>
+            <circle cx="15%" cy="25%" r="3.5" fill="#ffffff"/>
+            <circle cx="12%" cy="65%" r="4" fill="#34d399"/>
+            <circle cx="26%" cy="75%" r="3" fill="#38bdf8"/>
           </svg>
         </div>
 
-        <!-- محتوى البانر: الشعار + النصوص + شارة المدير + أزرار التفاعل -->
-        <div class="relative z-10 px-6 sm:px-10 lg:px-12 py-8 sm:py-11 flex flex-col-reverse lg:flex-row items-center justify-between gap-6 sm:gap-8">
+        <!-- محتوى البانر: الشعار الرسمي + العناوين الفخمة + شارة المدير + الشارة السحابية -->
+        <div class="relative z-10 px-6 sm:px-10 lg:px-12 py-10 sm:py-12 flex flex-col lg:flex-row items-center justify-between gap-8">
           
-          <!-- قسم النصوص والعناوين والبادجات -->
-          <div class="flex-1 text-center lg:text-right space-y-3.5 max-w-3xl">
+          <!-- الجانب الأيمن: بطاقة الشعار + العناوين والأزرار التفاعلية -->
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-3xl text-center sm:text-right">
             
-            <!-- الشارة العلوية المضيئة -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-sky-200 text-xs sm:text-sm font-bold backdrop-blur-md shadow-xs">
-              <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
-              <span>معايير هيئة تقويم التعليم والتدريب — التقويم والاعتماد المدرسي 2026</span>
+            <!-- بطاقة الشعار الرسمية الفاخرة (يمين البانر) -->
+            <div class="shrink-0 p-4 sm:p-5 rounded-3xl bg-white shadow-2xl border-2 border-sky-400/30 transform hover:scale-105 transition-all duration-300 animate-float flex flex-col items-center justify-center">
+              <img src="logo.jpg" alt="شعار مدارس دار الفرسان" class="w-32 sm:w-36 h-auto object-contain" />
             </div>
 
-            <!-- العناوين الرسمية الفخمة -->
-            <div class="space-y-1">
-              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight drop-shadow-md">
-                منصة التميز
-              </h1>
-              <h2 class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-sky-300 font-heading tracking-wide drop-shadow-sm">
-                بمدارس دار الفرسان الأهلية — المرحلة الابتدائية
-              </h2>
-            </div>
-
-            <!-- شعار المدرسة اللفظي -->
-            <p class="text-sm sm:text-base font-black text-emerald-400 tracking-widest font-heading drop-shadow-sm">
-              نـتـعـلـم . نـتـأمـل . نـتـفـكـر
-            </p>
-
-            <!-- الصف السفلي: بطاقة مدير المدرسة + شارة حالة درايف + زر المجلد -->
-            <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+            <!-- قسم النصوص والعناوين والبادجات -->
+            <div class="space-y-3.5">
               
-              <!-- بطاقة مدير المدرسة (أ. وليد حيدر) مطابقة 100% للتصميم -->
-              <div class="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white text-slate-900 shadow-xl border border-white/90 hover:shadow-2xl transition-all duration-300 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 via-brand-600 to-sky-400 flex items-center justify-center text-white font-black text-base shadow-md group-hover:scale-105 transition-transform">
-                  و
-                </div>
-                <div class="text-right">
-                  <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">مدير المدرسة</div>
-                  <div class="text-sm font-black text-slate-900 font-heading">أ. وليد حيدر</div>
-                </div>
+              <!-- الشارة العلوية المضيئة -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-sky-200 text-xs sm:text-sm font-bold backdrop-blur-md shadow-xs">
+                <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+                <span>معايير هيئة تقويم التعليم والتدريب — التقويم والاعتماد المدرسي 2026</span>
               </div>
 
-              <!-- شارة الاتصال الحي بـ Google Drive مع زر التحديث اللحظي -->
-              <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-900/70 border border-sky-400/40 text-sky-200 text-xs font-bold backdrop-blur-md shadow-md">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Google Drive: متصل حياً</span>
-                <button onclick="fetchLiveDataFromDrive(true)" title="تحديث وفحص فوري للشواهد من درايف الآن" class="p-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 hover:text-white transition-colors">
-                  <svg id="heroSyncIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                </button>
+              <!-- العناوين الرسمية الفخمة -->
+              <div class="space-y-1">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight drop-shadow-md">
+                  منصة التميز
+                </h1>
+                <h2 class="text-lg sm:text-2xl lg:text-3xl font-extrabold text-sky-300 font-heading tracking-wide drop-shadow-sm">
+                  بمدارس دار الفرسان الأهلية — المرحلة الابتدائية
+                </h2>
               </div>
 
-              <!-- زر مجلد شواهد درايف الرئيسي -->
-              <a href="https://drive.google.com/drive/folders/1VDoRMHx_TfYHfPGFrK0_QiGM-7kTeHfu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-white text-xs font-bold backdrop-blur-md transition-all shadow-md hover:scale-102">
-                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
-                <span>مجلد الشواهد الرئيسي ↗</span>
-              </a>
+              <!-- شعار المدرسة اللفظي المعتمد -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-black font-heading tracking-widest shadow-2xs">
+                <span class="text-amber-400">✦</span>
+                <span>نـتـعـلـم . نـتـأمـل . نـتـفـكـر</span>
+              </div>
+
+              <!-- الصف السفلي: بطاقة مدير المدرسة + شارة درايف + زر المجلد -->
+              <div class="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                
+                <!-- بطاقة مدير المدرسة (أ. وليد حيدر) -->
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white text-slate-900 shadow-xl border border-white/90 hover:shadow-2xl transition-all duration-300 group">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 via-brand-600 to-sky-400 flex items-center justify-center text-white font-black text-base shadow-md group-hover:scale-105 transition-transform">
+                    و
+                  </div>
+                  <div class="text-right">
+                    <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">مدير المدرسة</div>
+                    <div class="text-sm font-black text-slate-900 font-heading">أ. وليد حيدر</div>
+                  </div>
+                </div>
+
+                <!-- شارة الاتصال الحي بـ Google Drive مع زر التحديث اللحظي -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-900/80 border border-sky-400/40 text-sky-200 text-xs font-bold backdrop-blur-md shadow-md">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-dot"></span>
+                  <span>Google Drive: متصل حياً</span>
+                  <button onclick="fetchLiveDataFromDrive(true)" title="تحديث وفحص فوري للشواهد من درايف الآن" class="p-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 hover:text-white transition-colors">
+                    <svg id="heroSyncIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  </button>
+                </div>
+
+                <!-- زر مجلد شواهد درايف الرئيسي -->
+                <a href="https://drive.google.com/drive/folders/1VDoRMHx_TfYHfPGFrK0_QiGM-7kTeHfu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-white text-xs font-bold backdrop-blur-md transition-all shadow-md hover:scale-102">
+                  <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+                  <span>مجلد الشواهد الرئيسي ↗</span>
+                </a>
+
+              </div>
 
             </div>
 
           </div>
 
-          <!-- بطاقة الشعار الرسمية الفاخرة (يمين الشاشة) -->
-          <div class="shrink-0 flex items-center justify-center">
-            <div class="w-40 sm:w-48 lg:w-56 p-4 sm:p-5 rounded-3xl bg-white shadow-2xl border-2 border-white/70 transform hover:scale-105 transition-all duration-300 animate-float flex flex-col items-center justify-center">
-              <img src="logo.jpg" alt="شعار مدارس دار الفرسان" class="w-full h-auto object-contain max-h-36 sm:max-h-40" />
+          <!-- شارة فخمة عائمة على اليسار تميز واجهة المبنى الظاهرة بوضوح -->
+          <div class="hidden lg:flex flex-col items-start self-end mb-2 z-10 pointer-events-none">
+            <div class="px-4 py-2 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-white/20 text-white text-xs font-bold shadow-lg flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+              <span>واجهة مبنى المدارس — المسار الأهلي</span>
             </div>
           </div>
 
@@ -631,11 +693,11 @@
 
       </section>
 
-      <!-- عدادات الإنجاز والجاهزية الرقمية الخمسة الفاخرة -->
-      <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 mb-6">
+      <!-- عدادات الإنجاز والجاهزية الرقمية الخمسة الفاخرة (Executive KPI Dashboard) -->
+      <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
 
         <!-- 1. نسبة الجاهزية -->
-        <div class="col-span-2 sm:col-span-1 rounded-2xl bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 p-4 sm:p-5 text-white shadow-lg relative overflow-hidden group hover:-translate-y-1.5 transition-all duration-300">
+        <div class="kpi-card kpi-card-1 p-5 col-span-2 sm:col-span-1 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white shadow-lg relative overflow-hidden group">
           <div class="absolute -left-4 -bottom-4 w-20 h-20 rounded-full bg-white/10 blur-xl"></div>
           <div class="flex items-center justify-between mb-2">
             <span class="text-[11px] font-bold text-emerald-100 uppercase tracking-wider">الجاهزية للاعتماد</span>
@@ -651,7 +713,7 @@
         </div>
 
         <!-- 2. المجالات الرئيسية -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <div class="kpi-card kpi-card-2 p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-bold text-slate-500">المجالات الرئيسية</span>
             <span class="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xs shadow-2xs">🏛️</span>
@@ -661,7 +723,7 @@
         </div>
 
         <!-- 3. المعايير الوطنية -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <div class="kpi-card kpi-card-3 p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-bold text-slate-500">المعايير الوطنية</span>
             <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs shadow-2xs">📋</span>
@@ -671,17 +733,17 @@
         </div>
 
         <!-- 4. المؤشرات الرسمية -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <div class="kpi-card kpi-card-4 p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-bold text-slate-500">المؤشرات الرسمية</span>
-            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs shadow-2xs">🎯</span>
+            <span class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs shadow-2xs">🎯</span>
           </div>
           <div class="text-3xl font-black text-slate-900 font-heading">52</div>
           <div class="text-[11px] text-emerald-600 font-bold mt-1">100% مكتملة الشواهد</div>
         </div>
 
         <!-- 5. وثائق وشواهد درايف -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+        <div class="kpi-card kpi-card-5 p-5 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-bold text-slate-500">شواهد Drive</span>
             <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs shadow-2xs">📁</span>
@@ -823,28 +885,58 @@
       </section>
 
       <!-- شريط مسار التنقل التفاعلي والتحكم في نمط العرض -->
-      <!-- محدد المرحلة الدراسية بالمسار الأهلي (ابتدائي - متوسط - ثانوي) مطابقاً لتقسيم Google Drive -->
-      <div
-        class="hidden bg-gradient-to-r from-slate-900 via-brand-navy to-slate-900 rounded-3xl p-5 text-white shadow-soft border border-slate-800 flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-4">
-
-        <div class="flex items-center gap-3.5">
-          <div
-            class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center shrink-0 shadow-2xs">
-            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span id="currentStageHeaderBadge" class="text-xs font-bold text-amber-300">المرحلة الابتدائية</span>
-              <span
-                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-slate-300 border border-white/15">1448هـ
-                / 2026-2027</span>
+      <!-- محدد المرحلة الدراسية بالمسار الأهلي (ابتدائي - متوسط - ثانوي) مع زر التحليلات البيانية -->
+      <section class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-soft mb-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+          
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center shrink-0 shadow-2xs text-2xl">
+              🎓
             </div>
-            <h3 class="text-base sm:text-lg font-black font-heading text-white">اختر المرحلة الدراسية لاستعراض مجالاتها
-              ومعاييرها وشواهدها:</h3>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-black px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800">المسار الأهلي</span>
+                <span class="text-xs font-bold text-slate-400">العام الدراسي 1448هـ / 2026م</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-black font-heading text-slate-900 mt-0.5">
+                تصفح شواهد ومعايير المراحل الدراسية المعتمدة
+              </h3>
+            </div>
           </div>
+
+          <div class="flex items-center gap-2 flex-wrap">
+            
+            <button id="stageBtn_primary" onclick="setSchoolStage('primary')"
+              class="stage-tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-2 bg-brand-600 text-white border border-brand-500">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+              <span>المرحلة الابتدائية (بنين)</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-white/20 font-mono">122 ملفاً</span>
+            </button>
+
+            <button id="stageBtn_intermediate" onclick="setSchoolStage('intermediate')"
+              class="stage-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+              <span>المرحلة المتوسطة</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200 text-slate-600 font-mono">سحابي Drive</span>
+            </button>
+
+            <button id="stageBtn_secondary" onclick="setSchoolStage('secondary')"
+              class="stage-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200">
+              <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+              <span>المرحلة الثانوية</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200 text-slate-600 font-mono">سحابي Drive</span>
+            </button>
+
+            <button onclick="toggleChartsSection()"
+              class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 bg-sky-50 text-sky-700 hover:bg-sky-100 border border-sky-200">
+              <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              <span>التحليلات البيانية</span>
+            </button>
+
+          </div>
+
         </div>
+      </section>
 
         <!-- أزرار المراحل الثلاث (الابتدائي، المتوسط، الثانوي) -->
         <div class="flex items-center gap-2 flex-wrap">
@@ -5980,6 +6072,17 @@
       }
     }
 
+    
+    function toggleChartsSection() {
+      const sec = document.getElementById('chartsSection');
+      if (!sec) return;
+      sec.classList.toggle('hidden');
+      if (!sec.classList.contains('hidden')) {
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (typeof initCharts === 'function') initCharts();
+      }
+    }
+  
     function toggleChartsPanel() {
       const panel = document.getElementById('chartsContainerPanel');
       const icon = document.getElementById('chartsToggleIcon');
