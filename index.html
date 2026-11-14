@@ -182,6 +182,80 @@
     }
 
     
+    
+    /* أنيميشن شاشة تعطيل المنصة وإخراج العقل */
+    @keyframes skullCapLift {
+      0%, 15% { transform: translateY(0) rotate(0deg); }
+      30%, 70% { transform: translateY(-42px) rotate(-14deg); }
+      85%, 100% { transform: translateY(0) rotate(0deg); }
+    }
+    @keyframes brainExtract {
+      0%, 18% { transform: translateY(0) scale(0.96); filter: drop-shadow(0 0 4px #38bdf8); }
+      35%, 65% { transform: translateY(-68px) scale(1.12); filter: drop-shadow(0 0 20px #38bdf8) drop-shadow(0 0 35px #a855f7); }
+      82%, 100% { transform: translateY(0) scale(0.96); filter: drop-shadow(0 0 4px #38bdf8); }
+    }
+    @keyframes gearSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes gearSpinRev {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+    @keyframes toolTap {
+      0%, 32% { transform: translate(30px, -20px) rotate(25deg); opacity: 0; }
+      38%, 62% { transform: translate(0px, 0px) rotate(0deg); opacity: 1; }
+      68%, 100% { transform: translate(30px, -20px) rotate(25deg); opacity: 0; }
+    }
+    @keyframes sparkFlash {
+      0%, 42% { opacity: 0; transform: scale(0.2); }
+      48%, 54% { opacity: 1; transform: scale(1.3); }
+      60%, 100% { opacity: 0; transform: scale(0.2); }
+    }
+    @keyframes eyesBlink {
+      0%, 45%, 55%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+    @keyframes gridFloat {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+      animation: gridFloat 20s linear infinite;
+    }
+    .skull-cap {
+      transform-origin: 35px 95px;
+      animation: skullCapLift 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .brain-core {
+      animation: brainExtract 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      transform-origin: center;
+    }
+    .tool-arm {
+      transform-origin: 170px 70px;
+      animation: toolTap 5s ease-in-out infinite;
+    }
+    .spark {
+      transform-origin: 125px 65px;
+      animation: sparkFlash 5s ease-in-out infinite;
+    }
+    .eyes {
+      transform-origin: center 128px;
+      animation: eyesBlink 4s ease-in-out infinite;
+    }
+    .spinning-gear {
+      transform-origin: center;
+      animation: gearSpin 6s linear infinite;
+    }
+    .spinning-gear-rev {
+      transform-origin: center;
+      animation: gearSpinRev 6s linear infinite;
+    }
+
     /* أنيميشن الدوران والضوء المبهر */
     @keyframes spinSlow {
       from { transform: rotate(0deg); }
@@ -284,7 +358,182 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="min-h-screen flex bg-slate-50 antialiased selection:bg-brand-600 selection:text-white">
+
+  <!-- ============================================================ -->
+  <!-- 🔒 شاشة تعطيل المنصة المؤقتة (Maintenance & Security Lock Screen) -->
+  <!-- ============================================================ -->
+  <div id="maintenanceLockScreen" class="hidden fixed inset-0 z-[99999] bg-[#050e18] flex items-center justify-center p-4 cyber-grid overflow-y-auto">
+    <!-- خلفية هالات ضوئية متدرجة -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-rose-600/15 blur-[120px]"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-sky-600/15 blur-[120px]"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-indigo-600/10 blur-[150px]"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-2xl bg-slate-900/85 backdrop-blur-2xl rounded-3xl sm:rounded-[2.5rem] border border-slate-700/60 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.8)] overflow-hidden p-6 sm:p-10 text-center my-auto">
+
+      <!-- شارة التحذير العلوية -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs sm:text-sm font-bold shadow-sm mb-6">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+        <span class="font-mono uppercase tracking-wider">SYSTEM STATUS: SUSPENDED / قيد التعطيل</span>
+      </div>
+
+      <!-- أنيميشن SVG لشخص يفتح رأسه ويخرج عقله ويركبه -->
+      <div class="w-52 h-52 sm:w-60 sm:h-60 mx-auto mb-5 relative flex items-center justify-center">
+        <svg viewBox="0 0 240 240" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="headSkin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#0369a1" />
+            </linearGradient>
+            <linearGradient id="brainGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f43f5e" />
+              <stop offset="50%" stop-color="#d946ef" />
+              <stop offset="100%" stop-color="#60a5fa" />
+            </linearGradient>
+            <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1e293b" />
+              <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+          </defs>
+
+          <!-- الجسم والأكتاف -->
+          <path d="M50 220 C50 185 80 170 120 170 C160 170 190 185 190 220 Z" fill="url(#bodyGrad)" stroke="#334155" stroke-width="2.5" />
+          <path d="M100 170 L100 195 C100 205 140 205 140 195 L140 170 Z" fill="#0f172a" />
+
+          <!-- الرقبة -->
+          <rect x="104" y="150" width="32" height="24" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="2" />
+
+          <!-- الرأس السفلي مع الوجه -->
+          <g id="faceLower">
+            <path d="M65 95 C65 145 85 165 120 165 C155 165 175 145 175 95 Z" fill="url(#headSkin)" stroke="#38bdf8" stroke-width="2.5" />
+            <circle cx="62" cy="115" r="9" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+            <circle cx="178" cy="115" r="9" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+
+            <g class="eyes">
+              <rect x="88" y="118" width="18" height="12" rx="4" fill="#ffffff" />
+              <circle cx="97" cy="124" r="3.5" fill="#0284c7" />
+              <circle cx="98.5" cy="122.5" r="1.2" fill="#ffffff" />
+
+              <rect x="134" y="118" width="18" height="12" rx="4" fill="#ffffff" />
+              <circle cx="143" cy="124" r="3.5" fill="#0284c7" />
+              <circle cx="144.5" cy="122.5" r="1.2" fill="#ffffff" />
+            </g>
+
+            <path d="M108 145 C115 149 125 149 132 145" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+          </g>
+
+          <!-- العقل والمخ الذي يخرج ويركب -->
+          <g class="brain-core">
+            <ellipse cx="120" cy="95" rx="36" ry="28" fill="#d946ef" opacity="0.25" filter="blur(8px)" />
+            <path d="M96 95 C90 85 92 72 104 68 C110 66 116 68 120 72 C124 68 130 66 136 68 C148 72 150 85 144 95 C150 102 146 114 136 116 C130 117 124 114 120 110 C116 114 110 117 104 116 C94 114 90 102 96 95 Z" 
+                  fill="url(#brainGrad)" stroke="#ffffff" stroke-width="2" />
+            <path d="M104 80 C112 82 114 90 120 90 C126 90 128 82 136 80" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85" />
+            <path d="M102 95 C110 97 114 103 120 103 C126 103 130 97 138 95" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.85" />
+            <path d="M120 72 L120 110" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.75" />
+
+            <g class="spinning-gear" style="transform-origin: 108px 90px;">
+              <circle cx="108" cy="90" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2" />
+              <line x1="108" y1="82" x2="108" y2="98" stroke="#ca8a04" stroke-width="1.5" />
+              <line x1="100" y1="90" x2="116" y2="90" stroke="#ca8a04" stroke-width="1.5" />
+            </g>
+
+            <g class="spinning-gear-rev" style="transform-origin: 132px 90px;">
+              <circle cx="132" cy="90" r="5" fill="#67e8f9" stroke="#0891b2" stroke-width="1.2" />
+              <line x1="132" y1="83" x2="132" y2="97" stroke="#0891b2" stroke-width="1.5" />
+              <line x1="125" y1="90" x2="139" y2="90" stroke="#0891b2" stroke-width="1.5" />
+            </g>
+          </g>
+
+          <!-- غطاء الرأس العلوي الذي ينفتح -->
+          <g class="skull-cap">
+            <path d="M65 95 C65 52 89 42 120 42 C151 42 175 52 175 95 Z" fill="url(#headSkin)" stroke="#38bdf8" stroke-width="2.5" />
+            <circle cx="65" cy="95" r="4.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5" />
+            <path d="M85 62 C105 52 135 52 155 62" stroke="#bae6fd" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7" />
+          </g>
+
+          <!-- أداة الفحص والتعديل -->
+          <g class="tool-arm">
+            <path d="M195 40 L140 75" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" />
+            <circle cx="138" cy="76" r="5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <path d="M138 76 L130 82" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+          </g>
+
+          <!-- شرارات الضبط -->
+          <g class="spark">
+            <path d="M125 55 L128 63 L136 65 L128 67 L125 75 L122 67 L114 65 L122 63 Z" fill="#fbbf24" />
+            <circle cx="140" cy="58" r="2.5" fill="#38bdf8" />
+            <circle cx="112" cy="72" r="2" fill="#f43f5e" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- النصوص بالعربية -->
+      <div class="space-y-2 mb-5">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight drop-shadow-md">
+          تم تعطيل المنصة
+        </h1>
+        <p class="text-sm sm:text-base font-bold text-sky-300 font-heading">
+          للتشغيل وإعادة التفعيل، يُرجى التواصل مع البشمهندس:
+        </p>
+        
+        <!-- بطاقة المهندس أحمد حسان (مع ميزة النقر 3 مرات لفك القفل برمز سري) -->
+        <div onclick="handleDeveloperUnlockClick()" title="م. أحمد حسان"
+             class="cursor-pointer my-3 inline-flex items-center gap-3.5 px-6 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md shadow-lg transition-all hover:scale-102">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-md">
+            أ
+          </div>
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400 font-medium">المسؤول التقني والمطور</div>
+            <div class="text-base sm:text-lg font-black text-white font-heading">م. أحمد حسان</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- النصوص باللغة الإنجليزية كما طلب المستخدم -->
+      <div class="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800 text-center space-y-1 mb-5 font-mono text-xs sm:text-sm text-slate-300">
+        <div class="text-rose-400 font-bold uppercase tracking-wider">PLATFORM TEMPORARILY SUSPENDED</div>
+        <div>To reactivate the system, please contact:</div>
+        <div class="text-white font-bold text-sm sm:text-base">Eng. Ahmed Hassaan</div>
+        <div class="text-amber-400 font-bold tracking-widest text-base sm:text-lg dir-ltr">
+          +966 56 174 6069
+        </div>
+      </div>
+
+      <!-- أزرار التواصل المباشر (اتصال + واتساب فوري) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        
+        <!-- زر واتساب فوري -->
+        <a href="https://wa.me/966561746069?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A8%D8%B4%D9%85%D9%87%D9%86%D8%AF%D8%B3%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%AF%D8%A7%D8%B1%20%D8%A7%D9%84%D9%81%D8%B1%D8%B3%D8%A7%D9%86"
+           target="_blank" rel="noopener noreferrer"
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-emerald-900/30 transition-all hover:scale-105 active:scale-95">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span>مراسلة واتساب</span>
+        </a>
+
+        <!-- زر اتصال هاتفي -->
+        <a href="tel:0561746069"
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95 font-mono">
+          <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>اتصال: 0561746069</span>
+        </a>
+
+      </div>
+
+      <!-- تذييل شاشة القفل -->
+      <div class="mt-6 pt-5 border-t border-slate-800 text-[11px] text-slate-500 flex items-center justify-between flex-wrap gap-2">
+        <span>مدارس دار الفرسان الأهلية — ملف التميز</span>
+        <span class="font-mono">Security Lock &copy; 2026</span>
+      </div>
+
+    </div>
+  </div>
+
+  <body class="min-h-screen flex bg-slate-50 antialiased selection:bg-brand-600 selection:text-white">
 
   <!-- إشعار Toast تفاعلي -->
   <div id="toastNotification"
@@ -6203,7 +6452,55 @@
       if (chevron) chevron.classList.toggle('rotate-180');
     }
 
+    // ============================================================
+    // 🔒 مفتاح تعطيل / تشغيل المنصة (Master Maintenance Lock)
+    // ============================================================
+    // اجعل القيمة true لتعطيل المنصة وإظهار شاشة القفل للزوار
+    // اجعل القيمة false لتشغيل المنصة للجميع بشكل طبيعي
+    const IS_PLATFORM_DISABLED = true;
+
+    function checkPlatformLock() {
+      const lockScreen = document.getElementById('maintenanceLockScreen');
+      if (!lockScreen) return;
+
+      // فحص وسيلة التجاوز السرية للبشمهندس أحمد حسان (Secret Bypass)
+      // يمكن الدخول عبر الرابط بإضافة: ?unlock=ahmed أو ?unlock=1 أو ?key=0561746069
+      const urlParams = new URLSearchParams(window.location.search);
+      const isSecretBypass = urlParams.get('unlock') === 'ahmed' || 
+                             urlParams.get('unlock') === '1' || 
+                             urlParams.get('key') === '0561746069' ||
+                             sessionStorage.getItem('dar_forsan_unlocked') === 'true';
+
+      if (IS_PLATFORM_DISABLED && !isSecretBypass) {
+        lockScreen.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        lockScreen.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    // فك القفل بالضغط 3 مرات على بطاقة م. أحمد حسان في شاشة القفل
+    let developerClickCount = 0;
+    function handleDeveloperUnlockClick() {
+      developerClickCount++;
+      if (developerClickCount >= 3) {
+        developerClickCount = 0;
+        const pass = prompt('مرحباً بشمهندس أحمد حسان. أدخل رمز فك القفل المؤقت:');
+        if (pass === 'ahmed' || pass === '0561746069') {
+          sessionStorage.setItem('dar_forsan_unlocked', 'true');
+          const lockScreen = document.getElementById('maintenanceLockScreen');
+          if (lockScreen) lockScreen.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+          alert('تم فك القفل بنجاح والدخول للمنصة!');
+        } else if (pass !== null) {
+          alert('رمز غير صحيح');
+        }
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      checkPlatformLock();
       calculateTotalEvidenceCount();
       updateCustomLinksCountBadge();
       buildSidebarStandardsLists();
