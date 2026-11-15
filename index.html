@@ -552,7 +552,7 @@
     </div>
   </div>
 
-  <body class="min-h-screen flex bg-slate-50 antialiased selection:bg-brand-600 selection:text-white">
+  <body class="min-h-screen bg-slate-50 antialiased selection:bg-brand-600 selection:text-white">
 
   <!-- ======================================================== -->
   <!-- شاشة البداية السينمائية الترحيبية (Intro Splash Screen) -->
@@ -612,10 +612,6 @@
       }, 2200);
     </script>
   </div>
-      <p class="text-[11px] text-slate-400 mt-2.5 font-mono">انقر في أي مكان للدخول المباشر</p>
-    </div>
-
-  </div>
 
 
   <!-- إشعار Toast تفاعلي -->
@@ -629,12 +625,11 @@
   </div>
 
   <!-- حاجز خلفي شفاف يظهر خلف الدرج عند فتحه ويقفله عند الضغط عليه -->
-  <div id="sidebarOverlay" onclick="toggleMobileSidebar()"
+  <div id="sidebarOverlay" style="display: none !important;" onclick="toggleMobileSidebar()"
     class="fixed inset-0 bg-slate-900/40 backdrop-blur-[2px] z-30 hidden lg:hidden transition-opacity duration-300"></div>
 
   <!-- 1. القائمة الجانبية على هيئة درج منزلق (Sliding Drawer) -->
-  <aside id="sidebar"
-    class="fixed top-0 right-0 h-screen w-80 bg-brand-navy text-white flex flex-col z-40 transition-transform duration-300 ease-out shadow-2xl border-l border-white/10 translate-x-full lg:translate-x-0">
+  <aside id="sidebar" style="display: none !important;" class="hidden fixed top-0 right-0 h-screen w-80 bg-brand-navy text-white flex flex-col z-40 transition-transform duration-300 ease-out shadow-2xl border-l border-white/10 translate-x-full lg:translate-x-0">
 
     <!-- رأس القائمة: الشعار وهوية دار الفرسان -->
     <div class="p-6 border-b border-white/10 bg-slate-950/20">
@@ -900,7 +895,7 @@
   <!-- تم دمج زر القائمة في شريط الرأس العلوي لمنع الازدحام البصري -->
 
   <!-- 2. مساحة المحتوى الرئيسية (Main Executive Layout) -->
-  <div id="mainLayoutWrapper" class="flex-1 min-h-screen flex flex-col min-w-0 lg:mr-80 transition-all duration-300">
+  <div id="mainLayoutWrapper" class="flex-1 min-h-screen flex flex-col min-w-0 transition-all duration-300 w-full">
 
     <!-- شريط القيادة العلوي (Executive Top Bar) -->
     <header
@@ -938,8 +933,7 @@
         </button>
 
         <!-- زر القائمة الجانبية للجوال والتابلت داخل شريط الرأس -->
-        <button onclick="toggleMobileSidebar()"
-          class="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-brand-navy hover:bg-brand-800 text-white text-xs font-bold transition-all shadow-2xs"
+        <button onclick="toggleMobileSidebar()" style="display: none !important;" class="hidden lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-brand-navy hover:bg-brand-800 text-white text-xs font-bold transition-all shadow-2xs"
           title="فتح القائمة الجانبية للمعايير والمؤشرات">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -9565,6 +9559,7 @@
 
     function updateSidebarActive() {
       const items = document.querySelectorAll('.sidebar-item');
+      if (!items || items.length === 0) return;
       items.forEach(el => {
         el.classList.remove('bg-brand-600', 'text-white', 'border-brand-400');
         el.classList.add('text-slate-300');
