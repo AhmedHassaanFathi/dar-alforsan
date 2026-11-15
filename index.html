@@ -353,6 +353,25 @@
         box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
       }
     }
+  
+    /* تنسيق الكروت المتناسقة لمنع أي فراغ في الصفوف */
+    .balanced-cards-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      width: 100%;
+    }
+    .balanced-cards-flex > * {
+      flex: 1 1 calc(33.333% - 14px);
+      min-width: min(100%, 235px);
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .balanced-cards-flex > * {
+        flex: 1 1 100%;
+      }
+    }
+  
   </style>
   <!-- مكتبة الرسوم البيانية التفاعلية Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -885,10 +904,11 @@
 
     <!-- شريط القيادة العلوي (Executive Top Bar) -->
     <header
-      class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
+      class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 shadow-xs">
+      <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4">
 
       <!-- محرك البحث الذكي اللحظي -->
-      <div class="relative w-full md:w-96">
+      <div class="relative w-full md:flex-1 md:max-w-md">
         <input type="text" id="globalSearchInput"
           placeholder="ابحث برقم المؤشر (مثل 1-1-1-1) أو بالشاهد (خطة، نافس، إخلاء)..."
           class="w-full pl-9 pr-11 py-2.5 bg-slate-100/80 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all placeholder:text-slate-400"
@@ -969,6 +989,7 @@
         </button>
 
       </div>
+          </div>
     </header>
 
     <!-- ======================================================== -->
@@ -976,7 +997,8 @@
     <!-- يضمن عدم التوهان ويسهل معرفة الموقع الحالي والرجوع بضغطة واحدة -->
     <!-- ======================================================== -->
     <section id="stickyNavigationBar"
-      class="sticky top-[69px] z-19 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-8 py-2.5 shadow-xs flex items-center justify-between gap-3 flex-wrap transition-all">
+      class="sticky top-[65px] z-19 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-8 py-2.5 shadow-xs transition-all">
+      <div class="max-w-7xl mx-auto w-full flex items-center justify-between gap-3 flex-wrap">
       
       <div class="flex items-center gap-2.5 flex-wrap min-w-0">
         <!-- زر رجوع فوري وواضح دائماً -->
@@ -1018,7 +1040,7 @@
 
 
     <!-- مساحة الشاشة الرئيسية والتفاصيل -->
-    <main class="p-4 sm:p-8 space-y-8 flex-grow">
+    <main class="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 space-y-6 flex-grow">
 
       <!-- ======================================================== -->
       <!-- البانر القيادي الرئيسي لمنصة التميز - متطابق 100% مع الهوية والواجهة -->
@@ -1617,6 +1639,7 @@
           </svg>
           <span>مستند معتمد ومطابق لمتطلبات هيئة تقويم التعليم (ETEC)</span>
         </div>
+      </div>
       </div>
 
     </div>
@@ -10317,6 +10340,7 @@
     // إنشاء بطاقة المؤشر والشواهد (Indicator & Evidence Card)
     // ==========================================
     function createIndicatorCard(ind, std, domain, forceOpen = false) {
+      const directEvCount = ind.evidences ? ind.evidences.length : 0;
       const totalEv = (ind.evidences ? ind.evidences.length : 0) + (ind.subFolders ? ind.subFolders.reduce((acc, f) => acc + (f.files ? f.files.length : 0), 0) : 0);
       const isOpen = forceOpen; // مغلق افتراضياً لتوفير التمرير، ويفتح بالضغط أو عند البحث المباشر
 
@@ -10398,8 +10422,8 @@
                 <span class="text-[10px] text-slate-400 hidden sm:inline">انقر للمعاينة المباشرة بالمنصة • زر ↗ لفتح الملف في Google Drive</span>
               </div>
 
-              <!-- بطاقات الشواهد المعتمدة -->
-              <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+              <!-- بطاقات الشواهد المعتمدة بتوزيع ذكي متوازن بدون أي فراغ -->
+              <div class="balanced-cards-flex">
                 ${(() => {
                   const sortedEvidences = [...ind.evidences].sort((a, b) => (a.type === 'pdf' ? -1 : (b.type === 'pdf' ? 1 : 0)));
                   if (sortedEvidences.length === 0) {
@@ -10504,8 +10528,8 @@
                   ${ind.folderUrl ? `<a href="${ind.folderUrl}" target="_blank" rel="noopener noreferrer" class="text-amber-700 hover:text-amber-900 flex items-center gap-1 text-[11px] font-bold hover:underline"><span>مجلد Drive الرئيسي ↗</span></a>` : ''}
                 </div>
 
-                <!-- شبكة المجلدات الفرعية -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                <!-- شبكة المجلدات الفرعية بتوزيع ذكي متوازن -->
+                <div class="balanced-cards-flex">
                   ${ind.subFolders.map((fold, fIdx) => `
                     <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-2xs hover:border-amber-400 transition-all">
                       <button type="button" onclick="toggleSubFolderFiles('${ind.code}', ${fIdx})"
