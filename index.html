@@ -10679,7 +10679,10 @@
       // 1. فحص الكود الرباعي مثل 1-1-1-1 (1) - ... أو (1-1-1-1) ... أو [1-1-1-1] ... أو 1-1-1-1 - ...
       const codeMatch = clean.match(/^[\(\[]?\s*(\d+[-_]\d+[-_]\d+[-_]\d+)(?:\s*[\(\[]?(\d+)[\)\]]?)?\s*[\)\]]?\s*[-–—:]?\s*(.*)$/);
       if (codeMatch) {
-        const code = codeMatch[1].replace(/_/g, '-');
+        let code = codeMatch[1].replace(/_/g, '-');
+        if (defaultCode && code !== defaultCode) {
+          code = defaultCode; // كود مجلد المؤشر هو الأساس الدائم
+        }
         const subIdx = codeMatch[2] ? ' (' + codeMatch[2] + ')' : '';
         const text = codeMatch[3] ? codeMatch[3].trim() : '';
 
@@ -10705,9 +10708,13 @@
       // 3. تقارير شواهد المؤشر المعتمد
       const repMatch = clean.match(/^(تقرير شواهد المؤشر المعتمد)\s*[\(\[]?(\d+[-_]\d+[-_]\d+[-_]\d+)[\)\]]?/);
       if (repMatch) {
+        let code = repMatch[2].replace(/_/g, '-');
+        if (defaultCode && code !== defaultCode) {
+          code = defaultCode;
+        }
         return '<span class="inline-flex items-center gap-1.5 flex-wrap">' +
           '<bdi dir="ltr" class="font-mono inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[11px] font-black bg-red-100 text-red-800 border border-red-200 select-all shrink-0">' +
-          escapeHtml(repMatch[2].replace(/_/g, '-')) +
+          escapeHtml(code) +
           '</bdi>' +
           '<span class="text-slate-900 font-bold leading-snug">تقرير شواهد المؤشر المعتمد</span>' +
           '</span>';
@@ -10796,6 +10803,45 @@
     // ==========================================
     let FORSAN_DRIVE_API_URL = localStorage.getItem('forsan_drive_api_url') || "https://script.google.com/macros/s/AKfycby3HeAUI45vwtqTpMo9yy4l7XWP8qqb8Kcrn1I8jw2Ys75p5nB3Y0kfAuyHNbRqMSA/exec";
 
+    
+    // دالة تصحيح وتوحيد أكواد الشواهد لتطابق كود المؤشر الحقيقي تلقائياً
+    function sanitizeAccreditationData(data) {
+      if (!Array.isArray(data)) return data;
+      data.forEach(domain => {
+        (domain.standards || []).forEach(std => {
+          (std.indicators || []).forEach(ind => {
+            const targetCode = ind.code;
+            (ind.evidences || []).forEach(ev => {
+              const src = ev.fileName || ev.title || '';
+              if (src && src.trim().length > 0) {
+                let clean = src.replace(/\.pdf$/i, '').trim();
+                const cm = clean.match(/[\(\[]?\s*(\d+[-_]\d+[-_]\d+[-_]\d+)\s*[\)\]]?/);
+                if (cm && cm[1].replace(/_/g, '-') !== targetCode) {
+                  clean = clean.replace(cm[1], targetCode);
+                }
+                ev.title = clean;
+                ev.fileName = clean + '.pdf';
+              }
+            });
+            (ind.subFolders || []).forEach(sub => {
+              (sub.files || []).forEach(f => {
+                const src = f.title || f.fileName || '';
+                if (src) {
+                  let clean = src.replace(/\.(pdf|docx?|xlsx?|jpe?g|png)$/i, '').trim();
+                  const cm = clean.match(/[\(\[]?\s*(\d+[-_]\d+[-_]\d+[-_]\d+)\s*[\)\]]?/);
+                  if (cm && cm[1].replace(/_/g, '-') !== targetCode) {
+                    clean = clean.replace(cm[1], targetCode);
+                  }
+                  f.title = clean;
+                }
+              });
+            });
+          });
+        });
+      });
+      return data;
+    }
+
     async function fetchLiveDataFromDrive(forceScan = false) {
       if (!FORSAN_DRIVE_API_URL || !FORSAN_DRIVE_API_URL.startsWith('http')) return;
 
@@ -10808,7 +10854,7 @@
         const liveData = await res.json();
 
         if (Array.isArray(liveData) && liveData.length > 0) {
-          forsanAccreditationData = liveData;
+          forsanAccreditationData = sanitizeAccreditationData(liveData);
           renderDashboard();
           const badge = document.getElementById('driveLiveStatusBadge');
           if (badge) {
