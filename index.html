@@ -354,11 +354,11 @@
       }
     }
   
-    /* تنسيق الكروت المتناسقة لمنع أي فراغ في الصفوف */
+    /* شبكة كروت ذكية فائقة المرونة تملأ المساحة تلقائياً بدون أي فراغات ثابتة */
     .balanced-cards-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: 16px;
       width: 100%;
     }
     .balanced-cards-flex > * {
@@ -905,10 +905,10 @@
     <!-- شريط القيادة العلوي (Executive Top Bar) -->
     <header
       class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 shadow-xs">
-      <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4">
 
       <!-- محرك البحث الذكي اللحظي -->
-      <div class="relative w-full md:flex-1 md:max-w-md">
+      <div class="relative flex-1 min-w-[260px] max-w-xl w-full">
         <input type="text" id="globalSearchInput"
           placeholder="ابحث برقم المؤشر (مثل 1-1-1-1) أو بالشاهد (خطة، نافس، إخلاء)..."
           class="w-full pl-9 pr-11 py-2.5 bg-slate-100/80 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all placeholder:text-slate-400"
@@ -998,7 +998,7 @@
     <!-- ======================================================== -->
     <section id="stickyNavigationBar"
       class="sticky top-[65px] z-19 bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-4 sm:px-8 py-2.5 shadow-xs transition-all">
-      <div class="max-w-7xl mx-auto w-full flex items-center justify-between gap-3 flex-wrap">
+      <div class="w-full flex items-center justify-between gap-3 flex-wrap">
       
       <div class="flex items-center gap-2.5 flex-wrap min-w-0">
         <!-- زر رجوع فوري وواضح دائماً -->
@@ -1040,7 +1040,7 @@
 
 
     <!-- مساحة الشاشة الرئيسية والتفاصيل -->
-    <main class="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 space-y-6 flex-grow">
+    <main class="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-grow">
 
       <!-- ======================================================== -->
       <!-- البانر القيادي الرئيسي لمنصة التميز - متطابق 100% مع الهوية والواجهة -->
